@@ -25,7 +25,7 @@ Route::resource('/admin','AdminController')->middleware('admin');
 
 Route::get('/contractor','ContractorController@index')->name('contractor')->middleware('contractor');
 
-
+Route::post('/contractor','ContractorController@index')->name('contractor')->middleware('contractor');
 
 
 Route::get('/customer','CustomerController@index')->name('customer')->middleware('customer');

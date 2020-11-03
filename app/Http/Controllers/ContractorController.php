@@ -10,9 +10,7 @@ class ContractorController extends Controller
 {
     public function index()
     {
-    	 $arr = Auth::user();
-    	
-        
+    	$arr = Auth::User();
         return view('contractor.index')->with('arr',$arr);
     }
 }
