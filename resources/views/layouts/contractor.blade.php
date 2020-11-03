@@ -31,8 +31,8 @@
 
                     @if (isset(Auth::user()->role) && Auth::user()->role==2)
                         <li class="nav-item dropdown">
-                           {{-- <a href="#" class="nav-link" data-toggle="dropdown">Profile</a>
-                            <ul class="dropdown-menu " role="menu">--}}
+                            <a href="#" class="nav-link" data-toggle="dropdown">Profile</a>
+                            <ul class="dropdown-menu " role="menu">
 
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
@@ -42,8 +42,8 @@
                                         {{ __('Logout') }}
                                     </a>
                                 </form>
-                               {{-- </li>
-                            </ul>--}}
+
+                            </ul>
                         </li>
                     @endif
 
@@ -65,7 +65,7 @@
 
 
 <div
-    style="background-image: url('images/banner.jpg'); padding: 300px 0px; background-size: cover; background-repeat:no-repeat;background-position: center center;">
+    style="background-image: {{asset('images/banner.jpg')}}; padding: 300px 0px; background-size: cover; background-repeat:no-repeat;background-position: center center;">
 </div>
 <!-- Banner Ends Here -->
 <br>
@@ -87,12 +87,12 @@
 
 
 <!-- Bootstrap core JavaScript -->
-<script src="{{ asset('vendor/jquery/jquery.min.jss') }}"></script>
+<script src="{{ asset('vendor/jquery/jquery.js') }}"></script>
 <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
 
 <!-- Additional Scripts -->
-<script src="{{ asset('assets/js/custom.jss') }}"></script>
+<script src="{{ asset('assets/js/custom.js') }}"></script>
 <script src="{{ asset('assets/js/owl.js') }}"></script>
 </body>
 

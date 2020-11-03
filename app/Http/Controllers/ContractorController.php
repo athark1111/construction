@@ -13,4 +13,44 @@ class ContractorController extends Controller
     	$arr = Auth::User();
         return view('contractor.index')->with('arr',$arr);
     }
+
+    public function create()
+    {
+        return view('contractor.create');
+    }
+
+    public function store(Request $request)
+    {
+        $data = $request->validate([
+            'service_name' => 'required',
+            'price' => 'required',
+        ]);
+        auth()->user()->services()->create($data);
+        return redirect()->route('contractor.index')->with('message', 'Service Added');
+    }
+
+    public function edit($id)
+    {
+        $service = Services::find($id);
+        return view('contractor.edit',compact('service'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $data = $request->validate([
+            'service_name' => 'required',
+            'price' => 'required',
+        ]);
+        $service = Services::find($id);
+        $service->update($data);
+        return redirect()->route('contractor.index')->with('message', 'Service Updated Successfully');
+
+    }
+
+    public function destroy($id)
+    {
+        $service = Services::find($id);
+        $service->delete();
+        return redirect()->route('contractor.index')->with('message', 'Service Deleted Successfully');
+    }
 }
