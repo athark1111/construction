@@ -1,0 +1,30 @@
+<?php
+
+namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use App\User;
+
+class AdminController extends Controller
+{
+    public function index(){
+        $arr['users']=User::paginate(5);
+        return view('admin.index')->with($arr);
+        //also can write it as return view('admin.categories.index',$arr);
+        // also could be written as return view('admin.categories.index',['categories=>$categories']
+        //here $categories mesn that the data carried by array willbe available with name of $categories
+    }
+
+    
+    public function edit(User $users){
+        $arr['users']=$users;
+        return view('admin.edit')->with($arr);
+    }
+
+    public function update(Request $request, User $users)
+{
+ $users->name=$request->name;
+$users->save();
+return redirect()->route('admin.index');   
+}
+}
