@@ -63,11 +63,15 @@
 <!-- Page Content -->
 <!-- Banner Starts Here -->
 
-
+{{--
 <div
     style="background-image: {{asset('images/banner.jpg')}}; padding: 300px 0px; background-size: cover; background-repeat:no-repeat;background-position: center center;">
-</div>
+</div>--}}
 <!-- Banner Ends Here -->
+<br>
+<br>
+<br><br>
+<br>
 <br>
 <div> @yield('content')</div>
 
