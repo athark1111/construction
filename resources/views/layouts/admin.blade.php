@@ -205,11 +205,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             </li>
 
                             <li>
-                                <a href="inbox.html" class=" hvr-bounce-to-right"><i class="fa fa-inbox nav_icon"></i>
-                                    <span class="nav-label">Inbox</span> </a>
+                                <a href="{{route('show.booking')}}" class=" hvr-bounce-to-right"><i class="fa fa-inbox nav_icon"></i>
+                                    <span class="nav-label">Booking Panel</span> </a>
                             </li>
 
-                            <li>
+                           {{-- <li>
                                 <a href="gallery.html" class=" hvr-bounce-to-right"><i
                                         class="fa fa-picture-o nav_icon"></i> <span class="nav-label">Gallery</span>
                                 </a>
@@ -222,7 +222,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <li>
                             <li><a href="#" class=" hvr-bounce-to-right"><i class="fa fa-users nav_icon"></i>Registered
                                     Users</a></li>
-                            </li>
+                            </li>--}}
 
 
                         </ul>

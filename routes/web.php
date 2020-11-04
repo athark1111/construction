@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BookingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +22,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/admin','AdminController')->middleware('admin');
+Route::get('/booking', 'BookingController@booking')->name('show.booking')->middleware('admin');
 
 
 Route::get('/contractor','ContractorController@index')->name('contractor.index')->middleware('contractor');
@@ -38,7 +40,10 @@ Route::delete('/contractor/delete/{id}','ContractorController@destroy')->name('c
 Route::get('/customer','CustomerController@index')->name('customer')->middleware('customer');
 
 
-Route::get('/customer/city/','CustomerController@getAreas')->name('get.areas');
+Route::get('/customer/city','CustomerController@getAreas')->name('get.areas');
+Route::get('/customer/constructors','CustomerController@getConstructor')->name('get.constructors');
+Route::get('/customer/services','CustomerController@getServices')->name('get.services');
+Route::post('/customer/booking','CustomerController@store')->name('booking.store');
 
 
 //Route::resource('/home', 'UserController');

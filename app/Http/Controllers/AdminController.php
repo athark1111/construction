@@ -137,4 +137,6 @@ class AdminController extends Controller
         User::destroy($id);
         return redirect()->route('admin.index');
     }
+
+
 }

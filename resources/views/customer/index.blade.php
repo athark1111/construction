@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Dashboard') }}</div>
+                    <div class="card-header">{{ __('Book Service') }}</div>
 
                     <div class="card-body">
                         @if (session('status'))
@@ -15,9 +15,10 @@
                         @endif
 
 
-                        <form role="form" action="{{route('contractor.store')}}" method="post">
+                        <form role="form" action="{{route('booking.store')}}" method="post">
                             @csrf
                             <div class="card-body">
+
                                 <div class="form-group">
                                     <label for="city">City<code>*</code></label>
                                     <select class="form-control city" name="city"
@@ -28,9 +29,10 @@
                                         @endforelse
                                     </select>
                                 </div>
+
                                 <div class="form-group">
                                     <label for="area">Area<code>*</code></label>
-                                    <select class="form-control" id="area" name="area"
+                                    <select class="form-control area" id="area" name="area"
                                             style="width: 100%;">
                                         @forelse($areas as $area)
                                             <option value="{{$area->id}}">{{$area->name}}</option>
@@ -38,6 +40,28 @@
                                         @endforelse
                                     </select>
                                 </div>
+
+                                <div class="form-group">
+                                    <label for="constructors">Constructors<code>*</code></label>
+                                    <select class="form-control constructors" id="constructors" name="constructors" style="width: 100%;">
+                                        @forelse($constructors as $constructor)
+                                            <option value="{{$constructor->id}}">{{$constructor->name}}</option>
+                                        @empty
+                                        @endforelse
+                                    </select>
+                                </div>
+
+                                <div id="services">
+                                    @forelse($services as $service)
+                                        <div class="form-check form-check-inline" >
+                                            <input class="form-check-input" name="services[]" type="checkbox" id="{{$service->id}}" value="{{$service->id}}" >
+                                            <label class="form-check-label" for="{{$service->id}}" >{{$service->service_name}}({{$service->price}})</label>
+                                        </div >
+                                    @empty
+                                    @endforelse
+
+                                </div>
+
                             </div>
                             <!-- /.card-body -->
                             <div class="card-footer">
@@ -78,12 +102,60 @@
                             console.log(data);
                             if (data) {
                                 $('#area').empty();
+                                $('#services').empty();
                                 $.each(data, function (key, value) {
-                                    // alert(key);
                                     $('#area').append('<option value="' + value + '">' + key + '</option>');
-
                                 });
                             }
+                        }
+                    });
+                }
+            });
+
+            $(document).on('change', ".area", function (e) {
+                e.preventDefault();
+                let area_id = $(this).val();
+                if(area_id) {
+                    $.ajax({
+                        processing : "true",
+                        serverSide : "true",
+                        url: "{{route('get.constructors')}}",
+                        type: "GET",
+                        dataType: "json",
+                        data: {
+                            'area_id': area_id
+                        },
+                        success: function (data) {
+                            console.log(data);
+                            if (data) {
+                                $('#constructors').empty();
+                                $('#services').empty();
+                                $('#services').html();
+                                $.each(data, function (key, value) {
+                                    $('#constructors').append('<option value="' + value + '">' + key + '</option>');
+                                });
+                            }
+                        }
+                    });
+                }
+            });
+
+            $(document).on('change', ".constructors", function (e) {
+                e.preventDefault();
+                let constructor_id = $(this).val();
+                if(constructor_id) {
+                    $.ajax({
+                        processing : "true",
+                        serverSide : "true",
+                        url: "{{route('get.services')}}",
+                        type: "GET",
+                        dataType: "json",
+                        data: {
+                            'constructor_id': constructor_id
+                        },
+                        success: function (data) {
+                            $('#services').empty();
+                            $('#services').html(data);
                         }
                     });
                 }
