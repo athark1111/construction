@@ -38,5 +38,7 @@ Route::delete('/contractor/delete/{id}','ContractorController@destroy')->name('c
 Route::get('/customer','CustomerController@index')->name('customer')->middleware('customer');
 
 
+Route::get('/customer/city/','CustomerController@getAreas')->name('get.areas');
+
 
 //Route::resource('/home', 'UserController');
