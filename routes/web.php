@@ -35,7 +35,10 @@ Route::get('/profile','ContractorController@showProfile')->name('constructor.pro
 Route::put('/contractor/profile/{id}','ContractorController@updateProfile')->name('contractor.profile.update')->middleware('contractor');
 
 Route::get('/customer','CustomerController@index')->name('customer')->middleware('customer');
+Route::get('/profile','CustomerController@showProfile')->name('customer.profile')->middleware('customer');
+Route::put('/customer/profile/{id}','CustomerController@updateProfile')->name('customer.profile.update')->middleware('customer');
 Route::get('/customer/city','CustomerController@getAreas')->name('get.areas');
 Route::get('/customer/constructors','CustomerController@getConstructor')->name('get.constructors');
 Route::get('/customer/services','CustomerController@getServices')->name('get.services');
+Route::get('/contractor/services/{contractor}','CustomerController@showServices')->name('show.services');
 Route::post('/customer/booking','CustomerController@store')->name('booking.store');

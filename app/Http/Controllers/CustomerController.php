@@ -19,7 +19,7 @@ class CustomerController extends Controller
          $constructors = User::where('area_id', 1)->get();
          $services = Services::where('user_id', 4)->get();*/
 
-        $areas = Area::all();
+        $areas = Area::where('city_id', 1)->get();
         $constructors = User::all();
         $services = Services::all();
         return view('customer.index', compact('cities', 'areas', 'constructors', 'services'));
@@ -37,9 +37,12 @@ class CustomerController extends Controller
     {
         if (request()->ajax()) {
             $users = User::where('area_id', request()->get('area_id'))
-                ->where('role', 2)
-                ->pluck('id', 'name');
-            return response()->json($users);
+                ->where('role', 2)->get();
+            $con = '';
+            foreach ($users as $user) {
+                $con .= '<a href="' . route('show.services', $user->id) . '" class="list-group-item list-group-item-action">' . $user->name . '</a>';
+            }
+            return response()->json($con);
         }
     }
 
@@ -58,8 +61,17 @@ class CustomerController extends Controller
         }
     }
 
-    public function store()
+    public function showServices(User $contractor)
     {
+        return view('customer.show', compact('contractor'));
+    }
+
+    public function store(Request $request)
+    {
+
+        $request->validate([
+            'services' => 'required'
+        ],['services.required' => 'Please select atleast one service']);
 
         $data = [
             'customer_id' => auth()->user()->id,
@@ -67,6 +79,7 @@ class CustomerController extends Controller
             'service_id' => implode(",", request()->input('services'))
         ];
         Booking::create($data);
+        return redirect()->route('customer')->with('status', 'Booking has been saved');
 
 
         /*$services =  request()->input('services');
@@ -80,9 +93,31 @@ class CustomerController extends Controller
                 Booking::create($data);
             }
         }*/
-        return redirect()->back()->with('status', 'Booking has been saved');
+
 
     }
 
+
+    public function showProfile()
+    {
+        $constructor    = User::where('id',auth()->user()->id)->first();
+        $cities         = City::all();
+        $areas          = Area::all();
+        return view('customer.profile',compact('constructor','cities','areas'));
+    }
+
+    public function updateProfile($id)
+    {
+        $data = request()->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'city_id' => 'required',
+            'area_id' => 'required',
+        ]);
+        $user = User::find($id);
+        $user->update($data);
+        return redirect()->back()->with('message','Profile Updated');
+    }
 
 }

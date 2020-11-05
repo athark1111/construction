@@ -34,6 +34,7 @@
                                     <label for="area">Area<code>*</code></label>
                                     <select class="form-control area" id="area" name="area"
                                             style="width: 100%;">
+                                        <option value="">Select Area</option>
                                         @forelse($areas as $area)
                                             <option value="{{$area->id}}">{{$area->name}}</option>
                                         @empty
@@ -42,6 +43,11 @@
                                 </div>
 
                                 <div class="form-group">
+                                    <label for="constructors">Constructors</label>
+                                    <div class="list-group constructors" id="constructors"></div>
+                                </div>
+
+                                {{--<div class="form-group">
                                     <label for="constructors">Constructors<code>*</code></label>
                                     <select class="form-control constructors" id="constructors" name="constructors" style="width: 100%;">
                                         @forelse($constructors as $constructor)
@@ -49,9 +55,9 @@
                                         @empty
                                         @endforelse
                                     </select>
-                                </div>
+                                </div>--}}
 
-                                <div id="services">
+                                {{--<div id="services">
                                     @forelse($services as $service)
                                         <div class="form-check form-check-inline" >
                                             <input class="form-check-input" name="services[]" type="checkbox" id="{{$service->id}}" value="{{$service->id}}" >
@@ -60,13 +66,13 @@
                                     @empty
                                     @endforelse
 
-                                </div>
+                                </div>--}}
 
                             </div>
                             <!-- /.card-body -->
-                            <div class="card-footer">
+                            {{--<div class="card-footer">
                                 <button type="submit" class="btn btn-primary">Submit</button>
-                            </div>
+                            </div>--}}
 
                         </form>
 
@@ -84,6 +90,7 @@
     <script>
         (function ($) {
 
+            $('label[for="constructors"]').hide();
 
             $(document).on('change', ".city", function (e) {
                 e.preventDefault();
@@ -99,10 +106,10 @@
                             'city': city
                         },
                         success: function (data) {
-                            console.log(data);
                             if (data) {
                                 $('#area').empty();
                                 $('#services').empty();
+                                $('#area').append('<option>Select Area</option>');
                                 $.each(data, function (key, value) {
                                     $('#area').append('<option value="' + value + '">' + key + '</option>');
                                 });
@@ -126,40 +133,38 @@
                             'area_id': area_id
                         },
                         success: function (data) {
-                            console.log(data);
                             if (data) {
-                                $('#constructors').empty();
-                                $('#services').empty();
-                                $('#services').html();
-                                $.each(data, function (key, value) {
-                                    $('#constructors').append('<option value="' + value + '">' + key + '</option>');
-                                });
+                                $('label[for="constructors"]').show();
+                                $('#constructors').html();
+                                $('#constructors').html(data);
+                            } else {
+                                $('#constructors').html('<h4>No Contractors</h4>');
                             }
                         }
                     });
                 }
             });
 
-            $(document).on('change', ".constructors", function (e) {
-                e.preventDefault();
-                let constructor_id = $(this).val();
-                if(constructor_id) {
-                    $.ajax({
-                        processing : "true",
-                        serverSide : "true",
-                        url: "{{route('get.services')}}",
-                        type: "GET",
-                        dataType: "json",
-                        data: {
-                            'constructor_id': constructor_id
-                        },
-                        success: function (data) {
-                            $('#services').empty();
-                            $('#services').html(data);
-                        }
-                    });
-                }
-            });
+            {{--$(document).on('change', ".constructors", function (e) {--}}
+            {{--    e.preventDefault();--}}
+            {{--    let constructor_id = $(this).val();--}}
+            {{--    if(constructor_id) {--}}
+            {{--        $.ajax({--}}
+            {{--            processing : "true",--}}
+            {{--            serverSide : "true",--}}
+            {{--            url: "{{route('get.services')}}",--}}
+            {{--            type: "GET",--}}
+            {{--            dataType: "json",--}}
+            {{--            data: {--}}
+            {{--                'constructor_id': constructor_id--}}
+            {{--            },--}}
+            {{--            success: function (data) {--}}
+            {{--                $('#services').empty();--}}
+            {{--                $('#services').html(data);--}}
+            {{--            }--}}
+            {{--        });--}}
+            {{--    }--}}
+            {{--});--}}
 
 
         })(jQuery);
