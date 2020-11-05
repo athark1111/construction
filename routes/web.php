@@ -22,7 +22,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/admin','AdminController')->middleware('admin');
-Route::get('/booking', 'BookingController@booking')->name('show.booking')->middleware('admin');
+Route::get('/booking', 'BookingController@booking')->name('show.booking')->middleware('contractor');
 
 
 Route::get('/contractor','ContractorController@index')->name('contractor.index')->middleware('contractor');
@@ -40,6 +40,7 @@ Route::get('/contractor/profile','ContractorController@showProfile')->name('cons
 
 
 Route::put('/contractor/profile/{id}','ContractorController@updateProfile')->name('contractor.profile.update')->middleware('contractor');
+
 
 
 

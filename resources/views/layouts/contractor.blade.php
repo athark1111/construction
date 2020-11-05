@@ -21,6 +21,8 @@
                         </a>
                     </li>
 
+                    <li class="nav-item"><a  href="{{route('show.booking')}}" class="nav-link" href="#">Booking Panel</a></li>
+
                     <li class="nav-item"><a class="nav-link" href="#">Material Rate</a></li>
 
                     <li class="nav-item"><a class="nav-link" href="#">Calculate</a></li>

@@ -10,7 +10,7 @@ class BookingController extends Controller
 {
     public function booking()
     {
-        $bookings = Booking::paginate(10);
-        return view('admin.bookings',compact('bookings'));
+        $bookings = Booking::where('constructor_id',auth()->user()->id)->paginate(10);
+        return view('contractor.bookings',compact('bookings'));
     }
 }

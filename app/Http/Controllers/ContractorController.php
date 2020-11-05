@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Area;
+use App\City;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Services;
@@ -56,13 +58,24 @@ class ContractorController extends Controller
 
     public function showProfile()
     {
-        $constructor = User::where('id',auth()->user()->id)->first();
-        return view('contractor.profile',compact('constructor'));
+        $constructor    = User::where('id',auth()->user()->id)->first();
+        $cities         = City::all();
+        $areas          = Area::all();
+        return view('contractor.profile',compact('constructor','cities','areas'));
     }
 
     public function updateProfile($id)
     {
-        dd($id);
+        $data = request()->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'city_id' => 'required',
+            'area_id' => 'required',
+        ]);
+        $user = User::find($id);
+        $user->update($data);
+        return redirect()->back()->with('message','Profile Updated');
     }
 
 
