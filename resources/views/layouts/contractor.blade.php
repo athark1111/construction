@@ -26,12 +26,12 @@
                     <li class="nav-item"><a class="nav-link" href="#">Calculate</a></li>
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link">FAQs</a>
+                        <a href="{{route('constructor.profile')}}" class="nav-link">Profile</a>
                     </li>
 
                     @if (isset(Auth::user()->role) && Auth::user()->role==2)
                         <li class="nav-item dropdown">
-                            <a href="#" class="nav-link" data-toggle="dropdown">Profile</a>
+                            <a href="" class="nav-link" data-toggle="dropdown">{{auth()->user()->name}}</a>
                             <ul class="dropdown-menu " role="menu">
 
                                 <form method="POST" action="{{ route('logout') }}">

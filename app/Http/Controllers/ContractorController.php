@@ -53,4 +53,17 @@ class ContractorController extends Controller
         $service->delete();
         return redirect()->route('contractor.index')->with('message', 'Service Deleted Successfully');
     }
+
+    public function showProfile()
+    {
+        $constructor = User::where('id',auth()->user()->id)->first();
+        return view('contractor.profile',compact('constructor'));
+    }
+
+    public function updateProfile($id)
+    {
+        dd($id);
+    }
+
+
 }
