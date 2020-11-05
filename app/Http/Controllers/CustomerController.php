@@ -15,9 +15,13 @@ class CustomerController extends Controller
     public function index()
     {
         $cities = City::all();
-        $areas = Area::where('city_id', 1)->get();
-        $constructors = User::where('area_id', 1)->get();
-        $services = Services::where('user_id', 4)->get();
+        /* $areas = Area::where('city_id', 1)->get();
+         $constructors = User::where('area_id', 1)->get();
+         $services = Services::where('user_id', 4)->get();*/
+
+        $areas = Area::all();
+        $constructors = User::all();
+        $services = Services::all();
         return view('customer.index', compact('cities', 'areas', 'constructors', 'services'));
     }
 
@@ -60,7 +64,7 @@ class CustomerController extends Controller
         $data = [
             'customer_id' => auth()->user()->id,
             'constructor_id' => request()->input('constructors'),
-            'service_id' => implode(",",request()->input('services'))
+            'service_id' => implode(",", request()->input('services'))
         ];
         Booking::create($data);
 

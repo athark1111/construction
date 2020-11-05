@@ -21,7 +21,8 @@
                         </a>
                     </li>
 
-                    <li class="nav-item {{(request()->is('booking')) ? 'active' : ''}}"><a  href="{{route('show.booking')}}" class="nav-link" href="#">Booking Panel</a></li>
+                    <li class="nav-item {{(request()->is('booking')) ? 'active' : ''}}"><a
+                            href="{{route('show.booking')}}" class="nav-link" href="#">Booking Panel</a></li>
 
                     <li class="nav-item"><a class="nav-link" href="#">Material Rate</a></li>
 
