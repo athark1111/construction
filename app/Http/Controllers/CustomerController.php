@@ -75,7 +75,7 @@ class CustomerController extends Controller
 
         $data = [
             'customer_id' => auth()->user()->id,
-            'constructor_id' => request()->input('constructors'),
+            'constructor_id' => request()->input('constructor_id'),
             'service_id' => implode(",", request()->input('services'))
         ];
         Booking::create($data);

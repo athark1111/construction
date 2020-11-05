@@ -31,7 +31,7 @@ Route::post('/contractor/add','ContractorController@store')->name('contractor.st
 Route::get('/contractor/{id}/edit','ContractorController@edit')->name('contractor.edit')->middleware('contractor');
 Route::put('/contractor/update/{id}','ContractorController@update')->name('contractor.update')->middleware('contractor');
 Route::delete('/contractor/delete/{id}','ContractorController@destroy')->name('contractor.destroy')->middleware('contractor');
-Route::get('/profile','ContractorController@showProfile')->name('constructor.profile')->middleware('contractor');
+Route::get('/constructor/profile','ContractorController@showProfile')->name('constructor.profile')->middleware('contractor');
 Route::put('/contractor/profile/{id}','ContractorController@updateProfile')->name('contractor.profile.update')->middleware('contractor');
 
 Route::get('/customer','CustomerController@index')->name('customer')->middleware('customer');

@@ -42,6 +42,7 @@
                             </div>
                             <!-- /.card-body -->
                             <div class="card-footer">
+                                <input type="hidden" name="constructor_id" value="{{$contractor->id}}">
                                 <button type="submit" class="btn btn-primary">Submit</button>
                                 <a href="{{route('customer')}}" class="btn btn-secondary">Back</a>
                             </div>
