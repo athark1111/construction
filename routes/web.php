@@ -36,7 +36,7 @@ Route::put('/contractor/update/{id}','ContractorController@update')->name('contr
 
 Route::delete('/contractor/delete/{id}','ContractorController@destroy')->name('contractor.destroy')->middleware('contractor');
 
-Route::get('/contractor/profile','ContractorController@showProfile')->name('constructor.profile')->middleware('contractor');
+Route::get('/profile','ContractorController@showProfile')->name('constructor.profile')->middleware('contractor');
 
 
 Route::put('/contractor/profile/{id}','ContractorController@updateProfile')->name('contractor.profile.update')->middleware('contractor');

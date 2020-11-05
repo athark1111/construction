@@ -200,29 +200,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <ul class="nav" id="side-menu">
 
                             <li>
-                                <a href="{{route('admin.index')}}" class=" hvr-bounce-to-right"><i class="fa fa-dashboard nav_icon "></i><span
+                                <a href="{{route('admin.index')}}" class=" hvr-bounce-to-right"><i
+                                        class="fa fa-dashboard nav_icon "></i><span
                                         class="nav-label">Dashboards</span> </a>
                             </li>
-
+                            {{--
                             <li>
-                                <a href="{{route('show.booking')}}" class=" hvr-bounce-to-right"><i class="fa fa-inbox nav_icon"></i>
-                                    <span class="nav-label">Booking Panel</span> </a>
-                            </li>
+                                                           <a href="{{route('show.booking')}}" class=" hvr-bounce-to-right"><i class="fa fa-inbox nav_icon"></i>
+                                                               <span class="nav-label">Booking Panel</span> </a>
+                                                       </li>
 
-                           {{-- <li>
-                                <a href="gallery.html" class=" hvr-bounce-to-right"><i
-                                        class="fa fa-picture-o nav_icon"></i> <span class="nav-label">Gallery</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-desktop nav_icon"></i> <span
-                                        class="nav-label">Pages</span></a>
+                                                      <li>
+                                                           <a href="gallery.html" class=" hvr-bounce-to-right"><i
+                                                                   class="fa fa-picture-o nav_icon"></i> <span class="nav-label">Gallery</span>
+                                                           </a>
+                                                       </li>
+                                                       <li>
+                                                           <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-desktop nav_icon"></i> <span
+                                                                   class="nav-label">Pages</span></a>
 
-                            </li>
-                            <li>
-                            <li><a href="#" class=" hvr-bounce-to-right"><i class="fa fa-users nav_icon"></i>Registered
-                                    Users</a></li>
-                            </li>--}}
+                                                       </li>
+                                                       <li>
+                                                       <li><a href="#" class=" hvr-bounce-to-right"><i class="fa fa-users nav_icon"></i>Registered
+                                                               Users</a></li>
+                                                       </li>--}}
 
 
                         </ul>

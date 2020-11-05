@@ -15,19 +15,19 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home
+                    <li class="nav-item {{(request()->is('contractor')) ? 'active' : ''}}">
+                        <a class="nav-link" href="{{route('contractor.index')}}">Home
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
 
-                    <li class="nav-item"><a  href="{{route('show.booking')}}" class="nav-link" href="#">Booking Panel</a></li>
+                    <li class="nav-item {{(request()->is('booking')) ? 'active' : ''}}"><a  href="{{route('show.booking')}}" class="nav-link" href="#">Booking Panel</a></li>
 
                     <li class="nav-item"><a class="nav-link" href="#">Material Rate</a></li>
 
                     <li class="nav-item"><a class="nav-link" href="#">Calculate</a></li>
 
-                    <li class="nav-item dropdown">
+                    <li class="nav-item {{(request()->is('profile')) ? 'active' : ''}}">
                         <a href="{{route('constructor.profile')}}" class="nav-link">Profile</a>
                     </li>
 
